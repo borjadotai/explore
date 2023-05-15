@@ -1,0 +1,25 @@
+<form [formGroup]="updateProfileForm" (ngSubmit)="updateProfile()" class="form-widget">
+    <app-avatar [avatarUrl]="this.avatarUrl" (upload)="updateAvatar($event)"> </app-avatar>
+    <div>
+        <label for="email">Email</label>
+        <input class="input disabled" id="email" type="text" [value]="session.user.email" disabled />
+    </div>
+    <div>
+        <label for="username">Name</label>
+        <input class="input" formControlName="username" id="username" type="text" />
+    </div>
+    <div>
+        <label for="website">Website</label>
+        <input class="input" formControlName="website" id="website" type="url" />
+    </div>
+
+    <div>
+        <button type="submit" class="primary" [disabled]="loading">
+            {{ loading ? 'Loading ...' : 'Update' }}
+        </button>
+    </div>
+
+    <div>
+        <button class="secondary" (click)="signOut()">Sign Out</button>
+    </div>
+</form>

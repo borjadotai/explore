@@ -1,0 +1,9 @@
+<div class="w-full min-h-[100vh] bg-black text-white flex justify-center">
+  <div class="min-h-[100vh] py-20 w-96 flex flex-col items-center">
+    <app-navbar *ngIf="session"></app-navbar>
+    <div class="flex-grow">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>

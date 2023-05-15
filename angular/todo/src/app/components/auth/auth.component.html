@@ -1,0 +1,18 @@
+<div class="w-96 h-full flex flex-col items-center" aria-live="polite">
+    <h1 class="text-2xl font-semibold">Angular todo</h1>
+    <p class="py-6 text-gray-300" *ngIf="sent">Your one time magic link has been sent!</p>
+    <div *ngIf="!sent" class="text-center">
+        <p class="py-6 text-gray-300">Sign in via magic link with your email below</p>
+        <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="form-widget">
+            <div>
+                <label for="email" class="hidden">Email</label>
+                <input id="email" formControlName="email" type="email" placeholder="Your email" class="text-center" />
+            </div>
+            <div>
+                <button type="submit" class="primary" [disabled]="loading">
+                    {{ loading ? 'Loading' : 'Send magic link' }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

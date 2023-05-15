@@ -1,0 +1,18 @@
+<div class="w-96 text-left">
+    <div class="flex items-baseline">
+        <h1 class="text-3xl font-semibold mb-4">Today</h1>
+        <div class="ml-4 space-x-4 text-gray-500">
+            <button [class.text-white]="filter == 'active'" class="bg-transparent border-none"
+                (click)="filter = 'active'">active</button>
+            <button [class.text-white]="filter == 'done'" class="bg-transparent border-none"
+                (click)="filter = 'done'">done</button>
+            <button [class.text-white]="filter == 'all'" class="bg-transparent border-none"
+                (click)="filter = 'all'">all</button>
+        </div>
+    </div>
+    <ul>
+        <app-todo *ngFor="let todo of todos" [todo]="todo" (remove)="remove(todo)"></app-todo>
+    </ul>
+    <input #newItem placeholder="What are you doing today?" class="input outline-none focus:border-teal-500"
+        (keyup.enter)="addItem(newItem.value); newItem.value = ''" id="addItemInput" />
+</div>
