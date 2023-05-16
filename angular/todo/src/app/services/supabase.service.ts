@@ -9,6 +9,7 @@ import {
   User,
 } from '@supabase/supabase-js'
 import { environment } from '../../environment/environment'
+import { Todo } from '../interfaces/todo'
 
 export interface Profile {
   id?: string
@@ -71,5 +72,34 @@ export class SupabaseService {
 
   uploadAvatar(filePath: string, file: File) {
     return this.supabase.storage.from('avatars').upload(filePath, file)
+  }
+
+  fetchTodos() {
+    return this.supabase.from('todos').select()
+  }
+
+  addTodo(task: string) {
+    const userId = this._session?.user.id
+    return this.supabase.from('todos').insert({ task, user_id: userId }).select()
+  }
+
+  toggleDone(id: string, isDone: boolean) {
+    return this.supabase
+      .from('todos')
+      .update({ is_done: !isDone })
+      .eq('id', id)
+      .single()
+  }
+
+  archiveTodos(ids: string[]) {
+    return Promise.all(ids.map(id => this.supabase.from('todos').update({ is_archived: true, is_done: false }).eq('id', id)))
+  }
+
+  editTodo(id: string, task: string) {
+    return this.supabase
+      .from('todos')
+      .update({ task })
+      .eq('id', id)
+      .single()
   }
 }

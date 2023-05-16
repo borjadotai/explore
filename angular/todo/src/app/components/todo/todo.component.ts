@@ -1,21 +1,22 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Todo } from 'src/app/interfaces/todo';
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.css']
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class TodoComponent {
-  editable = false;
+  task: FormControl = new FormControl();
 
-  @Input() todo!: Todo;
-  @Output() remove = new EventEmitter<Todo>();
+  @Input() todo: Todo | undefined
+  @Output() editTodo: EventEmitter<void> = new EventEmitter<void>()
+  @Output() toggleDone: EventEmitter<void> = new EventEmitter<void>()
 
-  saveTodo(description: string) {
-    if (!description) return;
-    this.editable = false;
-    this.todo.description = description;
+  ngOnInit() {
+    this.task.setValue(this.todo?.task)
+    if (this.todo?.is_archived) this.task.disable()
   }
+
 }
