@@ -18,12 +18,12 @@ img {
     @apply rounded-full object-cover mb-4 w-40 h-40;
 }
 
-form {
-    @apply w-80;
-}
-
 footer a {
     @apply text-teal-600;
+}
+
+label {
+    @apply text-sm;
 }
 
 .primary {

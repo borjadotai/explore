@@ -5,7 +5,7 @@
     <div *ngIf="!_avatarUrl" class="avatar no-image"></div>
     <div class="upload">
         <label for="single">
-            {{ uploading ? 'Uploading ...' : 'Upload' }}
+            {{ uploading ? 'Uploading ...' : 'Upload picture' }}
         </label>
         <input style="visibility: hidden;position: absolute" type="file" id="single" accept="image/*"
             (change)="uploadAvatar($event)" [disabled]="uploading" />

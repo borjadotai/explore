@@ -1,4 +1,4 @@
-<form [formGroup]="updateProfileForm" (ngSubmit)="updateProfile()" class="form-widget">
+<form [formGroup]="updateProfileForm" (ngSubmit)="updateProfile()">
     <app-avatar [avatarUrl]="this.avatarUrl" (upload)="updateAvatar($event)"> </app-avatar>
     <div>
         <label for="email">Email</label>
