@@ -1,0 +1,9 @@
+{
+    "short_name": "Todo",
+    "name": "Todo app",
+    "background_color": "#000000",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#000000",
+    "description": "Todo app built with angular"
+}
