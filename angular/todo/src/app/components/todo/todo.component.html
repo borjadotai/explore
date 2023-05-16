@@ -2,5 +2,5 @@
     <input [value]="todo.description" #editedTodo (keyup.enter)="saveTodo(editedTodo.value);editedTodo.blur()"
         class="w-full border-none bg-transparent text-gray-300 mb-0 outline-none focus:underline underline-offset-2 decoration-teal-500" />
     <input [id]="todo.description" type="checkbox" (change)="todo.done = !todo.done" [checked]="todo.done"
-        class="w-4 bg-black rounded-sm pb-0 mb-0 hover:bg-teal-500 checked:bg-teal-500 focus-visible:border-gray-300 focus:accent-slate-500 outline-none">
+        class="w-4 bg-black rounded-sm pb-0 mb-0 hover:border-teal-500 focus:border-teal-500 focus:outline-none focus:ring-0 checked:bg-teal-500 focus-visible:border-gray-300 text-teal-500 outline-none cursor-pointer ring-0">
 </li>

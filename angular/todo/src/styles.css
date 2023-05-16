@@ -22,6 +22,10 @@ form {
     @apply w-80;
 }
 
+footer a {
+    @apply text-teal-600;
+}
+
 .primary {
     @apply w-full bg-green-500 border border-gray-800 rounded-md py-1 px-2 mb-2 font-semibold;
 }

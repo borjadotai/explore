@@ -1,5 +1,7 @@
 import { Component } from '@angular/core'
 import { FormBuilder } from '@angular/forms'
+import { Router } from '@angular/router'
+import { AuthSession, Session } from '@supabase/supabase-js'
 import { SupabaseService } from 'src/app/services/supabase.service'
 
 @Component({
@@ -16,9 +18,14 @@ export class AuthComponent {
   })
 
   constructor(
+    private readonly router: Router,
+    private readonly formBuilder: FormBuilder,
     private readonly supabase: SupabaseService,
-    private readonly formBuilder: FormBuilder
   ) { }
+
+  ngOnInit() {
+    this.supabase.authChanges((e, s) => s?.access_token && this.router.navigate(['/home']))
+  }
 
   async onSubmit(): Promise<void> {
     try {

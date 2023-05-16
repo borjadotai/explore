@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { FormBuilder } from '@angular/forms'
+import { Router } from '@angular/router'
 import { AuthSession } from '@supabase/supabase-js'
 import { Profile, SupabaseService } from 'src/app/services/supabase.service'
 
@@ -19,7 +20,7 @@ export class AccountComponent implements OnInit {
     avatar_url: '',
   })
 
-  constructor(private readonly supabase: SupabaseService, private formBuilder: FormBuilder) { }
+  constructor(private readonly supabase: SupabaseService, private formBuilder: FormBuilder, private router: Router) { }
 
   async ngOnInit(): Promise<void> {
     this.session = this.supabase.session!
@@ -80,8 +81,8 @@ export class AccountComponent implements OnInit {
     }
   }
 
-  async signOut() {
-    await this.supabase.signOut()
+  signOut() {
+    this.supabase.signOut().then(() => window.localStorage.removeItem('sb-ksrrqdsagxlaijrlqqzx-auth-token')).then(() => this.router.navigate(['/login']))
   }
 
   get avatarUrl() {
