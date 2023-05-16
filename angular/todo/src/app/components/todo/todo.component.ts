@@ -9,6 +9,7 @@ import { Todo } from 'src/app/interfaces/todo';
 })
 export class TodoComponent {
   task: FormControl = new FormControl();
+  rows: number = 1
 
   @Input() todo: Todo | undefined
   @Output() editTodo: EventEmitter<void> = new EventEmitter<void>()
@@ -16,6 +17,7 @@ export class TodoComponent {
 
   ngOnInit() {
     this.task.setValue(this.todo?.task)
+    this.rows = (this.todo?.task.length || 41) > 45 ? 2 : 1
     if (this.todo?.is_archived) this.task.disable()
   }
 

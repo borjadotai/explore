@@ -1,7 +1,7 @@
 <li class="flex items-center mb-4">
-    <input id="task" [formControl]="task" (keyup.enter)="editTodo.next(task.value); scrollUp()"
-        (keydown.enter)="editTodo.next(task.value); scrollUp()"
-        class="w-full border-none bg-transparent text-gray-300 mb-0 outline-none ring-0 focus:underline underline-offset-2 decoration-teal-500" />
+    <textarea wrap="soft" rows={{rows}} id="task" [formControl]="task"
+        (keyup.enter)="editTodo.next(task.value); scrollUp()" (keydown.enter)="editTodo.next(task.value); scrollUp()"
+        class="w-full border-none bg-transparent text-gray-300 mb-0 focus:outline-none focus:ring-0 focus:underline underline-offset-2 decoration-teal-500"></textarea>
     <input (change)="toggleDone.emit()" type="checkbox" [checked]="todo?.is_done || todo?.is_archived"
         [disabled]="todo?.is_archived"
         class="w-4 bg-black rounded-sm pb-0 mb-0 hover:border-teal-500 focus:border-teal-500 focus:outline-none focus:ring-0 checked:bg-teal-500 focus-visible:border-gray-300 text-teal-500 outline-none cursor-pointer ring-0">
