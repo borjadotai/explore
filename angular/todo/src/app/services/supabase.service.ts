@@ -75,7 +75,7 @@ export class SupabaseService {
   }
 
   fetchTodos() {
-    return this.supabase.from('todos').select()
+    return this.supabase.from('todos').select().order('created_at', { ascending: true })
   }
 
   addTodo(task: string) {

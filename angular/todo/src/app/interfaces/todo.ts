@@ -6,5 +6,5 @@ export interface Todo {
     is_done: boolean;
     is_archived: boolean;
     updated_at: string;
-    inserted_at: string;
+    created_at: string;
 }

@@ -10,18 +10,21 @@
                 (click)="changeFilter('archived')">archived</button>
         </div>
     </div>
-    <ul class="flex-grow overflow-y-scroll">
-        <ng-container *ngIf="todos.length">
-            <app-todo *ngFor="let todo of todos" [todo]="todo" (toggleDone)="toggleDone(todo.id, todo.is_done)"
-                (editTodo)="editTodo(todo.id, $event)"></app-todo>
-        </ng-container>
-        <button *ngIf="filter == 'done' && todos.length" (click)="archiveTodos(todos)"
-            class="bg-transparent border-none w-full text-center text-gray-500">archive
-            all</button>
-        <div class="w-full h-full flex justify-center items-center">
-            <span *ngIf="!loading && !todos.length" class="text-gray-400">You don't have any tasks here yet!</span>
-        </div>
-    </ul>
+    <div class="flex-grow">
+        <ul class="h-full overflow-y-scroll">
+            <ng-container *ngIf="todos.length">
+                <app-todo *ngFor="let todo of todos" [todo]="todo" (toggleDone)="toggleDone(todo.id, todo.is_done)"
+                    (editTodo)="editTodo(todo.id, $event)"></app-todo>
+            </ng-container>
+            <button *ngIf="filter == 'done' && todos.length" (click)="archiveTodos(todos)"
+                class="bg-transparent border-none w-full text-center text-gray-500">archive
+                all</button>
+            <div class="w-full h-full flex justify-center items-center">
+                <span *ngIf="!loading && !todos.length" class="text-gray-400">You don't have any tasks here yet!</span>
+            </div>
+        </ul>
+    </div>
     <input #newItem placeholder="What are you doing today?" class="input outline-none focus:border-teal-500 flex-grow-0"
-        (keyup.enter)="addTodo(newItem.value); newItem.value = ''" id="addItemInput" />
+        (keyup.enter)="addTodo(newItem.value); newItem.value = ''"
+        (keydown.enter)="addTodo(newItem.value); newItem.value = ''" id="addItemInput" />
 </div>
