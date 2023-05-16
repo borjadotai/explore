@@ -1,5 +1,6 @@
 <li class="flex items-center mb-4">
     <input id="task" [formControl]="task" (keyup.enter)="editTodo.next(task.value)"
+        (keydown.enter)="editTodo.next(task.value)"
         class="w-full border-none bg-transparent text-gray-300 mb-0 outline-none ring-0 focus:underline underline-offset-2 decoration-teal-500" />
     <input (change)="toggleDone.emit()" type="checkbox" [checked]="todo?.is_done || todo?.is_archived"
         [disabled]="todo?.is_archived"
