@@ -25,6 +25,6 @@
         </ul>
     </div>
     <input #newItem placeholder="What are you doing today?" class="input outline-none focus:border-teal-500 flex-grow-0"
-        (keyup.enter)="addTodo(newItem.value); newItem.value = ''"
-        (keydown.enter)="addTodo(newItem.value); newItem.value = ''" id="addItemInput" />
+        (keyup.enter)="addTodo(newItem.value); newItem.value = ''; newItem.blur(); scrollUp()"
+        (keydown.enter)="addTodo(newItem.value); newItem.value = ''; newItem.blur(); scrollUp()" id="addItemInput" />
 </div>
