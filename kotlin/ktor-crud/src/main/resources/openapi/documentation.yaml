@@ -6,18 +6,22 @@ info:
 servers:
   - url: "http://0.0.0.0:8080"
 paths:
-  /:
+  /article:
     get:
-      description: "Hello World!"
+      description: "Returns all articles"
       responses:
         "200":
           description: "OK"
           content:
             text/plain:
               schema:
-                type: "string"
+                type: "json"
               examples:
                 Example#1:
-                  value: "Hello World!"
+                  value: [{
+                    "id": 1,
+                    "title": "The ansia to develop!",
+                    "body": "...it's what keeps me going."
+                  }]
 components:
   schemas:
