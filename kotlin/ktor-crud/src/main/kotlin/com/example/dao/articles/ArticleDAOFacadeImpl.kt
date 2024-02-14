@@ -13,10 +13,13 @@ class ArticleDAOFacadeImpl : ArticleDAOFacade {
         id = row[Articles.id],
         title = row[Articles.title],
         body = row[Articles.body],
+        userId = row[Articles.userId]
     )
 
-    override suspend fun allArticles(): List<Article> = dbQuery {
-        Articles.selectAll().map(::resultRowToArticle)
+    override suspend fun articlesByUser(userId: Int): List<Article>? = dbQuery {
+        Articles
+            .select { Articles.userId eq userId }
+            .map(::resultRowToArticle).toList()
     }
 
     override suspend fun article(id: Int): Article? = dbQuery {
@@ -30,6 +33,7 @@ class ArticleDAOFacadeImpl : ArticleDAOFacade {
         val insertStatement = Articles.insert {
             it[Articles.title] = createDTO.title
             it[Articles.body] = createDTO.body
+            it[Articles.userId] = createDTO.userId
         }
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRowToArticle)
     }
@@ -47,10 +51,4 @@ class ArticleDAOFacadeImpl : ArticleDAOFacade {
     }
 }
 
-val dao: ArticleDAOFacade = ArticleDAOFacadeImpl().apply {
-    runBlocking {
-        if(allArticles().isEmpty()) {
-            addNewArticle(ArticleCreateDTO("The drive to develop!", "...it's what keeps me going."))
-        }
-    }
-}
+val dao: ArticleDAOFacade = ArticleDAOFacadeImpl()

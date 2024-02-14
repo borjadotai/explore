@@ -13,8 +13,9 @@ import io.ktor.server.routing.*
 fun Route.articleRoutes() {
     authenticate {
         route("/article") {
-            get {
-                val articles = dao.allArticles() ?: call.respond(HttpStatusCode.NotFound)
+            get("/user/{id?}") {
+                val userId = call.parameters["id"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
+                val articles = dao.articlesByUser(userId) ?: call.respond(HttpStatusCode.NotFound)
                 call.respond(HttpStatusCode.OK, articles)
             }
             get("{id?}") {
